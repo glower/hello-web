@@ -2,7 +2,7 @@ APP?=service
 PORT?=80080
 CMD?=cmd/service/main.go
 PROJECT?=github.com/glower/hello-web
-RELEASE?=0.0.2
+RELEASE?=0.0.3
 COMMIT?=$(shell git rev-parse --short HEAD)
 BUILD_TIME?=$(shell date -u '+%Y-%m-%d_%H:%M:%S')
 GOOS?=linux
@@ -24,11 +24,15 @@ install:
 	CGO_ENABLED=0 GOOS=${GOOS} go install -ldflags "$(LDFLAGS) -w -s" $(PROJECT)/cmd/service
 
 docker: build
-	docker build -t $(APP):$(RELEASE) .
+	docker build -t welmoki/hello-web:latest .
 
 run: docker
 	docker stop $(APP):$(RELEASE) || true && docker rm $(APP):$(RELEASE) || true
 	docker run --name ${APP} -p ${PORT}:${PORT} --rm -e "PORT=${PORT}" $(APP):$(RELEASE)
+
+deploy: docker
+	@echo "++ Pushing app latest build"
+	docker push welmoki/hello-web:latest
 
 test:
 	go test -v -race ./...
