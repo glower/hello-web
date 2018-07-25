@@ -1,0 +1,4 @@
+package: github.com/glower/hello-web
+import:
+- package: github.com/gorilla/mux
+  version: ~1.6.1
