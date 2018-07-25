@@ -2,7 +2,6 @@
 #
 # Check https://circleci.com/docs/2.0/language-go/ for more details
 version: 2
-
 jobs:
   build:
     docker:
@@ -10,11 +9,5 @@ jobs:
     working_directory: /go/src/github.com/glower/hello-web
     steps:
       - checkout
-      - setup_remote_docker
-      - run: |
-         docker login -u $DOCKER_USER -p $DOCKER_PASS
-
-      - run: go get -v -t -d ./...
-      - run: echo "run some tests"
+      - run: make build
       - run: make test
-      - run: make deploy
