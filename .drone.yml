@@ -1,6 +1,10 @@
 pipeline:
   build:
-    image: golang
+    image: golang:1.10.3
+    pull: true
     commands:
       - make build
       - make test
+workspace:
+  base: /go
+  path: src/github.com/glower/hello-web
