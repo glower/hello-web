@@ -7,12 +7,12 @@ pipeline:
       - make build
       - make test
 
-  publish:
-    commands:
-      - echo $FOO
-    when:
-      event: deployment
-      environment: init
+  # publish:
+  #   commands:
+  #     - echo $FOO
+  #   when:
+  #     event: deployment
+  #     environment: init
 
 workspace:
   base: /go
