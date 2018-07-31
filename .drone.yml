@@ -3,7 +3,6 @@ pipeline:
     image: golang:1.10.3
     pull: true
     commands:
-      - echo $FOO
       - make build
       - make test
 

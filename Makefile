@@ -35,4 +35,5 @@ deploy: docker
 	docker push welmoki/hello-web:latest
 
 test:
+	@echo "++ Running tests for ${FOO}"
 	go test -v -race ./...
