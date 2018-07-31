@@ -3,8 +3,17 @@ pipeline:
     image: golang:1.10.3
     pull: true
     commands:
+      - echo $FOO
       - make build
       - make test
+
+  publish:
+    commands:
+      - echo $FOO
+    when:
+      event: deployment
+      environment: init
+
 workspace:
   base: /go
   path: src/github.com/glower/hello-web
