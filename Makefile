@@ -15,7 +15,7 @@ clean:
 	rm -f ${APP}
 
 build: clean
-	@echo "++ Building"
+	@echo "++ Building on ${DRONE_SERVER}"
 	CGO_ENABLED=0 GOOS=${GOOS} cd cmd/service && go build \
 		-ldflags "$(LDFLAGS) -s -w" -o ${APP} .
 
